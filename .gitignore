@@ -16,3 +16,4 @@ target/
 **/.checkstyle
 app/bin/
 app/build/
+.vscode/
