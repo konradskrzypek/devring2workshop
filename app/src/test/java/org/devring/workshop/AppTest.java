@@ -10,7 +10,16 @@ class AppTest {
     
     @Test 
     private void appHasAGreeting() {
+        //given
         App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+        //when
+        String actual = classUnderTest.getGreeting();
+        //then
+        assertNotNull(actual, "app should have a greeting");
+    }
+
+    //TODO: check if greeting is equal to expected
+    // @Test 
+    private void appShouldHaveSpecificGreeteng() {
     }
 }

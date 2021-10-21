@@ -3,7 +3,7 @@
  */
 package org.devring.workshop;
 
-public class ClassWithConditions {
+public class Conditions {
     enum OsName {
         WINDOWS,
         LINUX,
@@ -21,6 +21,14 @@ public class ClassWithConditions {
         } else if ( osName.equals("Linux")) {
             return OsName.LINUX;
         } else return OsName.UNKNOWN;
+    }
+
+
+    public boolean checkIfFoo(String string) {
+        if (string.contains("foo")) {
+            return true;
+        }
+        return false;
     }
 
 }

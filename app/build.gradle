@@ -28,6 +28,7 @@ dependencies {
     testImplementation "org.assertj:assertj-core:3.21.0"   
     testImplementation "org.mockito:mockito-core:3.+"
     testImplementation "org.mockito:mockito-junit-jupiter:3+"
+
     
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1.1-jre'
@@ -48,7 +49,7 @@ tasks.withType(Test) {
                TestLogEvent.PASSED,
                TestLogEvent.SKIPPED,
                TestLogEvent.STANDARD_OUT
-        // exceptionFormat TestExceptionFormat.FULL
+        exceptionFormat TestExceptionFormat.FULL
         // showExceptions true
         // showCauses true
         // showStackTraces true
@@ -90,7 +91,9 @@ jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
     reports {
         xml.enabled true
-        csv.enabled false
+        csv.enabled true
+        html.enabled true
+        // html.destination file("${buildDir}/jacocoHtml")
     }
 }
 

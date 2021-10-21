@@ -1,9 +1,10 @@
 package org.devring.workshop.dogs;
 
-import lombok.Data;
+import lombok.Value;
 
-@Data(staticConstructor = "of")
+@Value(staticConstructor = "of")
 class Dog {
     private final String name;
     private final String breed;
+    private final boolean fictional;
 }

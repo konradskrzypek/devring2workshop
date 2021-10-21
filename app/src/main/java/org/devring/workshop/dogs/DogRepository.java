@@ -5,30 +5,54 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
+
 public class DogRepository {
 
-    private Map<String, Dog> dogs = new HashMap<>();
+    private Map<String, Dog> dogsDatabase = new HashMap<>();
+
+    public void connect(Map<String, Dog> dogsDatabase) {
+        this.dogsDatabase = dogsDatabase;
+    }
 
     public void add(Dog dog) {
-        if (dogs.containsKey(dog.getName())) {
+        if (dogsDatabase.containsKey(dog.getName())) {
             throw new NonuniqueDogNameException(dog.getName());
         }
 
-        dogs.put(dog.getName(), dog);
+        dogsDatabase.put(dog.getName(), dog);
     }
 
     public boolean containsDogNamed(String name) {
-        return dogs.containsKey(name);
+        return dogsDatabase.containsKey(name);
     }
 
     public Set<Dog> getByBreed(String breed) {
-        return dogs.values().stream()
+        return dogsDatabase.values().stream()
         .filter(dog -> dog.getBreed().equals(breed) )
         .collect(Collectors.toSet());
     }
 
+    public Dog findByName(String name) {
+        return dogsDatabase.getOrDefault(name, null);
+    }
+
+    public Set<String> getAllBreeds() {
+        return dogsDatabase.values().stream()
+        .map(dog -> dog.getBreed() )
+        .collect(Collectors.toSet());
+    }
+
+    public boolean isEmpty() {
+        return dogsDatabase.isEmpty();
+    }
+
     public void clear() {
-        dogs.clear();
+        dogsDatabase.clear();
+    }
+
+    public void deleteByName(String dogName) {
+        dogsDatabase.remove(dogName);
     }
 
 }
